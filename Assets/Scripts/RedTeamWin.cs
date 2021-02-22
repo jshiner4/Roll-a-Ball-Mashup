@@ -6,18 +6,17 @@ public class RedTeamWin : MonoBehaviour
 {
     public GameObject blueFlag;
     public GameObject player1Parent;
-    //aka player 1
+    public GameObject blueFlagStand;
+    //aka player 1 is red team. wants blue flag to win.
     private void OnCollisionEnter(Collision col)
     {
-        if (col.collider.CompareTag("Player2"))
+        if (col.collider.CompareTag("Player1"))
         {
-            //Debug.Log("player1");
-            //blueFlag.transform.parent = player1Parent.transform;
             blueFlag = player1Parent.transform.Find("Playground Flag BLUE").gameObject;
             if (blueFlag != null)
             {
-                blueFlag.transform.parent = this.transform;
-                Debug.Log("transferred flag");
+                blueFlag.transform.parent = blueFlagStand.transform;
+                Debug.Log("transferred blue flag. red team wins");
             }
         }
     }

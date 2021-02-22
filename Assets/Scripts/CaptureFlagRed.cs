@@ -6,18 +6,8 @@ public class CaptureFlagRed : MonoBehaviour
 {
     public GameObject redFlag;
     public GameObject player2Parent;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject redFlagStand;
+    public GameObject player1Parent;
 
     private void OnCollisionEnter(Collision col)
     {
@@ -25,6 +15,16 @@ public class CaptureFlagRed : MonoBehaviour
         {
             Debug.Log("player2");
             redFlag.transform.parent = player2Parent.transform;
+        }
+
+        else if (col.collider.CompareTag("Player1"))
+        {
+            redFlag = player1Parent.transform.Find("Playground Flag RED").gameObject;
+            if (redFlag != null)
+            {
+                redFlag.transform.parent = redFlagStand.transform;
+                Debug.Log("blue flag has been returned");
+            }
         }
     }
 }
